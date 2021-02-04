@@ -1,0 +1,189 @@
+Name: Ruichao Wang
+UIN: 230002693
+Github link: https://github.com/chaochaoddln/hw-ruby-intro
+
+----------------------------------------------
+# Part 1
+
+def sum arr
+  # YOUR CODE HERE
+  if arr.length == 0
+    return 0
+  end
+  
+  ans = 0
+  for i in arr
+    ans += i
+  end
+  return ans
+end
+
+def max_2_sum arr
+  # YOUR CODE HERE
+  
+  if arr.length == 0
+    return 0
+  elsif arr.length == 1
+    return arr[0]
+  else
+    if arr[0] > arr[1]
+      max1 = arr[0]
+      max2 = arr[1]
+    else
+      max1 = arr[1]
+      max2 = arr[0]
+    end
+    
+    for i in 2...arr.length
+      if arr[i] >= max1
+        max2 = max1
+        max1 = arr[i]
+      elsif arr[i] > max2
+        max2 = arr[i]
+      end
+    end
+    
+    return max1 + max2
+        
+  end
+end
+
+def sum_to_n? arr, n
+  # YOUR CODE HERE
+  
+  if arr.length < 2
+    return false
+  end
+  
+  for i in 0...arr.length
+    for j in (i+1)...arr.length
+      if arr[i] + arr[j] == n
+        return true
+      end
+    end
+  end 
+  
+  return false
+    
+end
+
+# Part 2
+
+def hello(name)
+  # YOUR CODE HERE
+  
+  return "Hello, #{name}"
+end
+
+def starts_with_consonant? s
+  # YOUR CODE HERE
+  
+  if s.length == 0
+    return false
+  end 
+  
+  letter = /[BCDFGHJKLMNPQRSTVWXYZ]/i
+  
+  if s[0].upcase =~ letter
+    return true
+  else
+    return false
+  end
+  
+end
+
+def binary_multiple_of_4? s
+  # YOUR CODE HERE
+  
+  if s.length == 0
+    return false
+  end
+  
+  for i in 0...s.length
+    if s[i] != "0" and s[i] != "1"
+      return false
+    end
+  end
+  
+  return (s.to_i(2) % 4 == 0)
+end
+
+# Part 3
+
+class BookInStock
+# YOUR CODE HERE
+  attr_accessor :isbn
+	attr_accessor :price
+	
+  def initialize(isbn, price)
+    if isbn.length == 0 || price <= 0
+      raise ArgumentError
+    end
+    
+    @isbn = isbn
+    @price = price
+  end
+  
+  def price_as_string
+    return format("$%0.2f", @price)
+  end
+  
+end
+
+
+----------------------------------------------------
+Log file:
+
+Ruby intro part 1
+  #sum
+    should be defined
+    returns correct sum [20 points]
+    works on the empty array [10 points]
+  #max_2_sum
+    should be defined
+    returns the correct sum [7 points]
+    works even if 2 largest values are the same [3 points]
+    returns zero if array is empty [10 points]
+    returns value of the element if just one element [10 points]
+  #sum_to_n
+    should be defined
+    returns true when any two elements sum to the second argument [30 points]
+    returns false for any single element array [5 points]
+    returns false for an empty array [5 points]
+
+#hello
+  should be defined
+  The hello method returns the correct string [30 points]
+
+#starts_with_consonant?
+  should be defined
+  classifies true cases [10 points]
+  classifies false cases [10 points]
+  works on the empty string [5 points]
+  works on nonletters [5 points]
+
+#binary_multiple_of_4?
+  should be defined
+  classifies valid binary numbers [30 points]
+  rejects invalid binary numbers [10 points]
+
+BookInStock
+  should be defined
+  getters and setters
+    should set ISBN [10 points]
+    should set price [10 points]
+    should be able to change ISBN [10 points]
+    should be able to change price [10 points]
+  constructor
+    should reject invalid ISBN number [10 points]
+    should reject zero price [10 points]
+    should reject negative price [10 points]
+  #price_as_string
+    should be defined
+    should display 33.95 as "$33.95" [10 points]
+    should display 1.1 as $1.10 [10 points]
+    should display 20 as $20.00 [10 points]
+
+Finished in 0.02869 seconds (files took 0.09343 seconds to load)
+34 examples, 0 failures
+
